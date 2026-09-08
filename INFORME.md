@@ -1,6 +1,15 @@
 # Informe Laboratorio 1: La ganancia que se evapora
 **Computación Numérica Universidad Católica del Maule**
 - **Integrante : Ernesto Ponce Muñoz**
+
+## Norma arbitraria ante la cancelación
+
+Para decidir si una diferencia (ΔP, ganancia, variación anual) es o no confiable, se estableció el siguiente criterio:
+
+1. **Cifras significativas por defecto:** se trabaja con 2 cifras significativas (A1, A2, A4, A5). Para casos de cancelación fuerte entre valores muy próximos (A3), se usan 3 cifras, ya que con 2 cifras ambos meses habrían quedado con el mismo valor redondeado, haciendo el análisis trivial.
+2. **Criterio de confiabilidad:** un resultado se considera confiable **si y solo si su magnitud es mayor que su error absoluto propagado** (|resultado| > error). Si el error es igual o mayor que el resultado, se considera que el signo (sube/baja) no puede afirmarse con seguridad, aunque el intervalo no cruce el cero.
+3. **Propagación:** en sumas y restas se propagan errores absolutos; en multiplicaciones y divisiones, errores relativos (según lo definido en la sección 5 del enunciado).
+
 ## 1. Análisis de Error (Preguntas A1 a A5)
 
 ### A1. Error de representación mes a mes
