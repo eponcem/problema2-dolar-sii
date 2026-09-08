@@ -14,4 +14,8 @@ Para ejecutar los análisis y generar los gráficos y el archivo de resultados:
 ## Síntesis de Resultados por Función
  **A1 - analizar_error_representacion (src/errores.py):**
    - **Descripción:** Esta función redondea todos los precios mensuales a 2 cifras significativas usando mantisa corta, calcula el error absoluto y relativo para cada mes y busca cuál registró el mayor desvío relativo respecto al valor oficial.
-  1. **Resultado:** Ocurrió en **Abril de 2022** con un precio real de 815.12 CLP aproximado a 820.0 CLP (Ea = 4.88 CLP, Er = 0.5987%).
+  - **Resultado:** Ocurrió en **Abril de 2022** con un precio real de 815.12 CLP aproximado a 820.0 CLP (Ea = 4.88 CLP, Er = 0.5987%).
+
+ **A2 - analizar_ejemplo_a2 (src/errores.py):**
+   - **Descripción:** Simula una transacción completa de compra y venta con un capital de 1.000.000 CLP entre dos meses fijados (Junio 2023 y Enero 2025), propagando los errores en la división (compra), multiplicación (venta) y resta (ganancia) para determinar el margen de incertidumbre.
+   - **Resultado:** Compra en Junio 2023 y venta en Enero 2025 genera una ganancia estimada de **250.000 +- 1.152,44 CLP** (Er = 0.46%).
