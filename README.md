@@ -39,3 +39,7 @@ Para ejecutar los análisis y generar los gráficos y el archivo de resultados:
 **B2 - analizar_deriva (src/punto_flotante.py):**
    - **Descripción:** Ejecuta una operación de ida y vuelta (convertir 1.000.000 CLP a USD y luego de vuelta a CLP usando el mismo precio mensual) en precisión simple float32, midiendo la deriva monetaria acumulada frente al millón exacto a lo largo de los 37 meses.
    - **Resultado:** La deriva oscila estrictamente entre **-0.0625 y +0.0625 CLP** (exactamente 1 ULP de 1.000.000 en float32), actuando como ruido de redondeo sin seguir la tendencia del dólar.
+
+**B4 - analizar_cancelacion_b4 (src/punto_flotante.py):**
+   - **Descripción:** Realiza la resta directa 874.67 - 875.66 en precisión doble (float64) y precisión simple (float32) a nivel de hardware, comparando cuántas cifras significativas útiles conserva cada estándar al enfrentar cancelación catastrófica.
+   - **Resultado:** En float64 el resultado es **-0.9900000000000091** (retiene aproximadamente 15 cifras válidas), mientras que en float32 es **-0.9899902344** (se degrada a solo 5 cifras válidas por la pérdida de bits significativos en la mantisa).
