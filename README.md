@@ -31,3 +31,11 @@ Para ejecutar los análisis y generar los gráficos y el archivo de resultados:
 **A5 - analizar_compra_venta (src/errores.py):**
    - **Descripción:** Recorre toda la serie para encontrar de forma automatizada el mes más barato (mínimo) y el más caro (máximo), calcula la rentabilidad porcentual de operar entre ambos extremos y propaga el error para verificar si la ganancia sobrevive a la incertidumbre.
    - **Resultado:** Comprar en **Febrero 2023** (798.26 CLP) y vender en **Enero 2025** (1000.76 CLP) entrega una rentabilidad de **25.00% +- 0.37%**. Como la rentabilidad supera ampliamente al error, la conclusión es totalmente sólida.
+
+**B1 - analizar_b1_cifras_significativas (src/punto_flotante.py):**
+   - **Descripción:** Evalúa el efecto de limitar la precisión a 3 cifras significativas sobre el valor más alto del período (1000.76 CLP) para ilustrar conceptualmente cómo una mantisa de pocos bits introduce un error de representación en punto flotante.
+   - **Resultado:** El valor 1000.76 queda guardado como 1000.0 (1.00 x 10^3), produciendo un error absoluto de **0.76 CLP** y un error relativo de **0.0759%**.
+
+**B2 - analizar_deriva (src/punto_flotante.py):**
+   - **Descripción:** Ejecuta una operación de ida y vuelta (convertir 1.000.000 CLP a USD y luego de vuelta a CLP usando el mismo precio mensual) en precisión simple float32, midiendo la deriva monetaria acumulada frente al millón exacto a lo largo de los 37 meses.
+   - **Resultado:** La deriva oscila estrictamente entre **-0.0625 y +0.0625 CLP** (exactamente 1 ULP de 1.000.000 en float32), actuando como ruido de redondeo sin seguir la tendencia del dólar.
