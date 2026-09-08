@@ -23,3 +23,11 @@ Para ejecutar los análisis y generar los gráficos y el archivo de resultados:
  **A3 - analizar_cancelacion_a3 (src/anualidad.py):**
    - **Descripción:** Calcula la diferencia del dólar entre dos meses casi idénticos (Diciembre 2022 y Diciembre 2023) redondeados a 3 cifras significativas, sumando los errores absolutos para evaluar si la cercanía de los valores provoca el fenómeno de cancelación numérica.
    - **Resultado:** Variación de **-1.00 +- 0.67 CLP** con un error relativo muy alto de **67.00%**, demostrando cómo la resta de números parecidos amplifica drásticamente la incertidumbre relativa.
+
+ **A4 - analizar_variacion_anual_a4 (src/anualidad.py):**
+   - **Descripción:** Calcula la variación del precio entre enero y diciembre para cada año (2022 a 2025) junto con sus errores propagados, y luego ordena los años de menor a mayor error relativo para identificar cuáles períodos ofrecen estimaciones más confiables.
+   - **Resultado:** El año más confiable fue **2025** (Delta P = -80.0 +- 4.60 CLP, Er = 5.75%) y el menos confiable fue **2023** (Delta P = 40.0 +- 8.33 CLP, Er = 20.82%), ya que en 2023 la variación neta fue muy pequeña y cercana a cero.
+
+**A5 - analizar_compra_venta (src/errores.py):**
+   - **Descripción:** Recorre toda la serie para encontrar de forma automatizada el mes más barato (mínimo) y el más caro (máximo), calcula la rentabilidad porcentual de operar entre ambos extremos y propaga el error para verificar si la ganancia sobrevive a la incertidumbre.
+   - **Resultado:** Comprar en **Febrero 2023** (798.26 CLP) y vender en **Enero 2025** (1000.76 CLP) entrega una rentabilidad de **25.00% +- 0.37%**. Como la rentabilidad supera ampliamente al error, la conclusión es totalmente sólida.
