@@ -68,3 +68,26 @@ Al convertir $1.000.000 CLP a dólares con float32 y volver inmediatamente a pes
 1. Se produce una diferencia (deriva) que se mueve entre -0.0625 y +0.0625 CLP.
 2. Esto ocurre porque 1 ULP para un millón en float32 vale exactamente 0.0625 CLP (2^-4).
 3. Esta deriva no sigue el patrón del precio del dólar (correlación r = -0.37); es simplemente ruido numérico por el redondeo en los últimos bits de la mantisa.
+
+### B4. Cancelación en la máquina (874.67 - 875.66)
+1. Valor exacto: -0.99
+2. En float64: -0.9900000000000091 (retiene ~15 cifras significativas válidas)
+3. En float32: -0.9899902344 (retiene solo ~5 cifras válidas)
+**Conexión con A3:**  
+Ocurre exactamente el mismo fenómeno que en el cálculo a mano de A3: como ambos números comparten la parte entera (87X), la resta cancela los bits principales a cero y los bits de menor peso se corren a la izquierda, dejando el resultado con ruido binario en vez de precisión real.
+
+## 3. Conclusiones
+1. **¿Cuándo conviene comprar?**  
+   Conviene comprar en **Febrero de 2023**, cuando el dólar estuvo en su precio mínimo ($798.26 CLP). El mínimo es confiable porque al compararlo con los meses vecinos (Enero con $826.34 y Marzo con $809.50), la diferencia con el mes más cercano es de 11.24 CLP, lo que supera con holgura el error de redondeo combinado (2.24 CLP). El mínimo no cae dentro de la incertidumbre.
+2. **¿Cuándo conviene vender?**  
+   Conviene vender en **Enero de 2025**, cuando alcanzó el valor máximo ($1000.76 CLP). También es un máximo confiable frente a sus vecinos (Diciembre 2024 con $982.30 y Febrero 2025 con $956.62), ya que la distancia con Diciembre es de 18.46 CLP y el error propagado es de solo 3.06 CLP.
+3. **La mejor jugada completa:**  
+   Comprar en Febrero de 2023 y vender en Enero de 2025. Da una rentabilidad de **25.00% ± 0.37%**. Es una recomendación sólida porque el rango garantizado [24.63%, 25.37%] descarta cualquier pérdida.
+4. **Los tramos donde NO se puede recomendar:**  
+   No se puede recomendar operar en tramos donde la diferencia de precios sea menor al error propagado:
+   1. **Mayo a Junio de 2023:** El precio subió 1.23 CLP, pero el error propagado a 2 cifras es de 1.49 CLP. Como el error supera la variación, no se puede asegurar si subió o bajó.
+   2. **Diciembre 2022 a Diciembre 2023:** La diferencia de -1.00 ± 0.67 CLP deja un 67% de error relativo.
+   3. **Año 2023 completo:** Tuvo un 20.82% de error relativo en su variación anual.
+5. **La lección de método (en una frase):**  
+   Al restar dos números grandes y muy parecidos, los dígitos significativos se cancelan y el resultado queda dominado por el error de redondeo, transformando una pequeña diferencia en un error relativo muy grande.
+
